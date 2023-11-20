@@ -24,6 +24,7 @@ int main() {
         }
         printf("\n");
     }
+
     int trapped = 0;
     for (int pos = 0; pos < SIZE - 1; ++pos) {
         if (*(map + pos) <= *(map + pos + 1)) {
