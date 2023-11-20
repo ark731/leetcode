@@ -18,7 +18,7 @@
 // Output: 1
 // Explanation: The smallest positive integer 1 is missing.
 
-// THIS SOLUTION VIOLATES SPACE COMPLEXITY
+// THIS SOLUTION VIOLATES SPACE COMPLEXITY BUT W/E
 
 #include <stdio.h>
 #include <stdlib.h>
