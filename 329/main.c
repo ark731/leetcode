@@ -79,6 +79,5 @@ int dive_in(int rows, int cols, int (*matrix)[cols], int i, int j, int depth) {
     if (tmp_d > depth) {
         depth = tmp_d;
     }
-    // printf("%d, %d : %d", i, j, depth);
     return depth;
 }
