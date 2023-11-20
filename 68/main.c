@@ -99,6 +99,7 @@ int main() {
             }
             ++rows;
         }
+
     nahui:
         printf("\n");
         for (int i = 0; i < rows + 1; ++i) {
