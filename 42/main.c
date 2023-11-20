@@ -35,7 +35,6 @@ int trap(int *map, int *pos) {
     int endPos = -1;
     int level = *(map + *pos);
     while (level) {
-        printf("NEXT POS: %d ", *pos);
         endPos = getEndPos(map, *pos, level);
         if (endPos != -1) {
             break;
@@ -44,7 +43,6 @@ int trap(int *map, int *pos) {
     }
     if (endPos != -1) {
         trapped = collect(map, *pos, endPos, level);
-        printf("ACTUAL NEXTPOS: %d", endPos);
         *pos = endPos - 1;
     }
     return trapped;
@@ -58,23 +56,17 @@ int getEndPos(int *map, int pos, int level) {
             break;
         }
     }
-    printf("NEXT ENDPOS: %d\n", endPos);
     return endPos;
 }
 
 int collect(int *map, int pos, int endPos, int level) {
     int trapped = 0;
-    printf("COLLECTING FROM %d TO %d, LEVEL %d : ", pos, endPos, level);
-
     while (pos <= endPos) {
-        printf("%d ", level - *(map + pos));
         if ((level - *(map + pos)) > 0) {
-            printf("^;  ");
             trapped += level - *(map + pos++);
         } else {
             ++pos;
         }
     }
-    printf("\n");
     return trapped;
 }
