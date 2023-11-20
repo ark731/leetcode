@@ -8,15 +8,16 @@ int main() {
     int words = rand() % 50 + 15;
     char **wordList;
     wordList = malloc(sizeof(char *) * words);
-    for (int i = 0; i < words; ++i) {
-        int tmp = rand() % 14 + 3;
-        *(wordList + i) = malloc(sizeof(char) * tmp);
-        for (int j = 0; j < tmp - 1; ++j) {
-            *(*(wordList + i) + j) = rand() % 58 + 65;
-        }
-        *(*(wordList + i) + tmp - 1) = '\0';
-    }
     if (wordList != NULL) {
+        for (int i = 0; i < words; ++i) {
+            int tmp = rand() % 14 + 3;
+            *(wordList + i) = malloc(sizeof(char) * tmp);
+            for (int j = 0; j < tmp - 1; ++j) {
+                *(*(wordList + i) + j) = rand() % 58 + 65;
+            }
+            *(*(wordList + i) + tmp - 1) = '\0';
+        }
+
         for (int i = 0; i < words; ++i) {
             if (*(wordList + i) != NULL) {
                 printf("%s | ", *(wordList + i));
@@ -92,7 +93,6 @@ int main() {
                 free(*(justified + i));
             }
         }
-
         free(wordList);
         free(justified);
     }
