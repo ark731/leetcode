@@ -50,6 +50,8 @@ int trap(int *map, int *pos) {
     if (endPos != -1) {
         trapped = collect(map, *pos, endPos, level);
         *pos = endPos - 1;
+    } else {
+        *pos = SIZE;
     }
     return trapped;
 }
