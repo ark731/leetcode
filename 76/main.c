@@ -31,23 +31,56 @@ int main() {
     subStr = malloc(sizeof(char) * (subStrSize + 1));
     if (subStr == NULL) {
         printf("MALLOC 2 ERROR\n");
+        free(string);
         return 1;
     }
+    int *subStrMap;
+    subStrMap = calloc(58, sizeof(int));
+    if (subStrMap == NULL) {
+        printf("CALLOC 3 ERROR\n");
+        free(subStr);
+        free(string);
+        return 1;
+    }
+    short uniq = 0;
     for (int i = 0; i < subStrSize; ++i) {
         *(subStr + i) = rand() % 26 + 65 + 32 * (rand() % 2);
+        if (!(*(subStrMap + *(subStr + i) - 65))) {
+            ++uniq;
+        }
+        ++(*(subStrMap + *(subStr + i) - 65));
     }
     printf("%s\n", subStr);
 
-    int minWinLen = SIZE + 1;
-    char *winPos = NULL;
-    for (int i = 0; i < SIZE - subStrSize; ++i) {
-        if (strchr(subStr, *(string + i)) == NULL) {
-            continue;
+    int j = 0;
+    int minWinSize = SIZE + 1;
+    char *winPtr = NULL;
+    for (int i = 0; i < SIZE; ++i) {
+        --(*(subStrMap + *(string + i) - 65));
+        if (!*(subStrMap + *(string + i) - 65)) {
+            --uniq;
+            if (!uniq) {
+                while (*(subStrMap + *(string + j) - 65) < 0) {
+                    ++(*(subStrMap + *(string + j++) - 65));
+                }
+                if (i - j + 1 < minWinSize) {
+                    winPtr = string + j;
+                    minWinSize = i - j + 1;
+                }
+                ++(*(subStrMap + *(string + j++) - 65));
+                ++uniq;
+            }
         }
-        int tmp;
     }
 
-    free(string);
+    if (winPtr != NULL) {
+        printf("%.*s", minWinSize, winPtr);
+    } else {
+        printf("n/a\n");
+    }
+
+    free(subStrMap);
     free(subStr);
+    free(string);
     return 0;
 }
