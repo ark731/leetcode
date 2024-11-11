@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define SIZE 8
+#define SIZE 8 //
 
 int trap(int *map, int *pos);
 int getEndPos(int *map, int pos, int *level);
